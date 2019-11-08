@@ -7,7 +7,6 @@ import Hero from "../components/Hero"
 import Promos from "../components/Promos"
 import FlowIn from "../components/FlowIn"
 import { below } from "../utilities/styleHelpers"
-import Layout from "../components/layout"
 
 const StyledHome = styled.main`
   display: grid;

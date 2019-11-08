@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react"
 import styled from "styled-components"
 import { colors } from "../utilities/styleHelpers"
 import MobileNavLink from "./MobileNavLink"
-import { useSpring, useChain, animated } from "react-spring"
+import { useSpring, animated } from "react-spring"
 
 const StyledNav = styled(animated.nav)`
   font-size: 2.5rem;
