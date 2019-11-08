@@ -32,13 +32,14 @@ const StyledDropdown = styled(animated.div)`
         white-space: nowrap;
         padding: 0.5rem 0;
         a {
-          
+
         }
         &:hover {
           .underline-sub {
             transform: scaleX(1);
           }
       }
+    }
     }
   `
 
