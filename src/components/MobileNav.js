@@ -1,11 +1,12 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
 import { colors } from "../utilities/styleHelpers"
 import MobileNavLink from "./MobileNavLink"
 import { useSpring, animated } from "react-spring"
+import Hamburger from "react-hamburger-menu"
 
 const StyledNav = styled(animated.nav)`
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   line-height: 1.5;
   text-transform: uppercase;
   position: fixed;
@@ -13,36 +14,22 @@ const StyledNav = styled(animated.nav)`
   left: 0;
   width: 100%;
   height: 100vh;
-  overflowy: scroll;
+  overflow-y: scroll;
   background-color: ${colors.darkGrey};
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-bottom: 80px;
 `
 const StyledNavLinks = styled(animated.div)`
-  width: 500px;
-  max-width: 60vw;
+  width: 90vw;
+  max-width: 500px;
   margin: 0 auto;
 `
-
-const StyledOpenButton = styled.button`
-  color: white;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  padding: 0;
-  text-align: right;
-  position: fixed;
-  top: 4rem;
-  right: 4rem;
+const StyledOpenButton = styled.div`
   z-index: 20;
-  background: none;
-  border: none;
-  width: 20px;
-  height: 20px;
-  svg {
-    width: 100%;
-    height: auto;
-  }
+  display: flex;
+  justify-content: flex-end;
 `
 
 const MobileNav = ({ data }) => {
@@ -54,29 +41,31 @@ const MobileNav = ({ data }) => {
       ? "hidden"
       : "initial"
   }
+  const closeMenu = () => {
+    setOpen(false)
+    document.querySelector("body").style.overflowY = "initial"
+  }
+
   const navRef = useRef()
   const menuRef = useRef()
   const fadeIn = useSpring({
     opacity: open ? 1 : 0,
     pointerEvents: open ? "all" : "none",
   })
+
   const riseUp = useSpring({
     transform: open ? `translate3d(0, 0px, 0)` : `translate3d(0,3rem,0)`,
   })
   return (
     <>
-      <StyledOpenButton onClick={toggleMenu}>
-        <svg
-          width="100"
-          height="60"
-          viewBox="0 0 100 70"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M0 0H100V10H0V0Z" fill="#FFFFFF" />
-          <path d="M0 30H100V40H0V30Z" fill="#FFFFFF" />
-          <path d="M0 60H100V70H0V60Z" fill="#FFFFFF" />
-        </svg>
+      <StyledOpenButton>
+        <Hamburger
+          isOpen={open}
+          menuClicked={toggleMenu}
+          color="white"
+          height={20}
+          width={25}
+        />
       </StyledOpenButton>
       <StyledNav ref={navRef} style={fadeIn}>
         <StyledNavLinks ref={menuRef} style={riseUp}>
@@ -87,11 +76,11 @@ const MobileNav = ({ data }) => {
                 slug={navLink.slug}
                 subPages={navLink.subpages}
                 key={navLink.slug}
-                dropdownFloat={false}
+                closeMenu={closeMenu}
               />
             )
           })}
-          <MobileNavLink name="Contact" slug="/contact" />
+          <MobileNavLink name="Contact" slug="/contact" onClick={closeMenu} />
         </StyledNavLinks>
       </StyledNav>
     </>

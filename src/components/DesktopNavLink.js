@@ -10,6 +10,7 @@ const StyledNavLink = styled.div`
   a {
     text-decoration: none;
     color: white;
+    outline: none;
   }
   margin: 0 1rem;
   &:last-child {

@@ -28,17 +28,24 @@ const StyledHero = styled.div`
 const StyledHeadline = styled.section`
   width: 90vw;
   margin: 0 auto;
-  postion: relative;
+  position: relative;
   z-index: 5;
   text-align: center;
   h2 {
     color: white;
-    font-size: 5rem;
+    font-size: 3rem;
     text-align: center;
     margin: 2rem 0;
     font-weight: normal;
+    @media (min-width: 800px) {
+      font-size: 4rem;
+    }
+    @media (min-width: 1200px) {
+      font-size: 4.5rem;
+    }
   }
-  h3 {
+  .prehead {
+    text-transform: uppercase;
     color: white;
     font-style: italic;
     font-size: 2rem;
@@ -69,7 +76,11 @@ const Hero = props => {
       <div className="content">
         <StyledHeadline>
           <FlowIn>
-            {prehead ? <h3 key="prehead">{prehead}</h3> : null}
+            {prehead ? (
+              <div className="prehead" key="prehead">
+                {prehead}
+              </div>
+            ) : null}
             <h2 key="headline">{headline}</h2>
             {subhead ? <p>{subhead}</p> : null}
             {ctaLink && ctaText ? (

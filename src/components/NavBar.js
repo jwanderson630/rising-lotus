@@ -6,9 +6,10 @@ import { useStaticQuery, graphql } from "gatsby"
 import useMeasure from "../hooks/useMeasure"
 import DesktopNav from "./DesktopNav"
 import MobileNav from "./MobileNav"
+import useScroll from "../hooks/useScroll"
 
-const StyledHeader = styled.header`
-  position: absolute;
+const StyledHeader = styled(animated.header)`
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -27,11 +28,17 @@ const StyledHeaderContents = styled.div`
 `
 
 const StyledLogo = styled.h1`
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: normal;
+  position: relative;
+  z-index: 100;
+  margin: 10px 0;
   a {
     color: white;
     text-decoration: none;
+  }
+  @media (min-width: 800px) {
+    font-size: 3rem;
   }
 `
 
@@ -66,8 +73,13 @@ const NavBar = ({ title }) => {
       }
     }
   `)
+  const scroll = useScroll()
+  const fadeInBg = useSpring({
+    backgroundColor:
+      scroll.y < 100 ? `rgba(26,26,26, ${scroll.y / 100})` : `rgba(26,26,26,1)`,
+  })
   return (
-    <StyledHeader {...ref}>
+    <StyledHeader {...ref} style={fadeInBg}>
       <animated.div style={{ ...fadeIn }}>
         <StyledHeaderContents>
           <StyledLogo>

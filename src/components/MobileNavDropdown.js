@@ -3,8 +3,6 @@ import { animated, useSpring } from "react-spring"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import useMeasure from "../hooks/useMeasure"
-import useHoveredOver from "../hooks/useHoveredOver"
-import Underline from "./Underline"
 import { fontFamilies } from "../utilities/styleHelpers"
 
 const StyledDropdown = styled(animated.div)`
@@ -14,9 +12,24 @@ const StyledDropdown = styled(animated.div)`
     left: -1.5rem;
     overflow: hidden;`
       : ``}
+
+  .sub-link {
+    display: block;
+  }
   a {
     text-decoration: none;
     color: white;
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    padding: 10px 10px;
+    margin: 0 auto;
+    display: block;
+    width: calc(100% - 50px);
+    border-radius: 4px;
+    &:focus,
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
   }
   .dropdown-contents {
     list-style: none;
@@ -31,34 +44,19 @@ const StyledDropdown = styled(animated.div)`
       font-size: inherit;
       white-space: nowrap;
       padding: 0.5rem 0;
-      a {
-      }
-      &:hover {
-        .underline-sub {
-          transform: scaleX(1);
-        }
-      }
     }
   }
 `
 
 const DropdownLink = ({ slug, name, tabIndex, closeMenu }) => {
-  const [hovered, hoverRef] = useHoveredOver()
   return (
-    <Link
-      ref={hoverRef}
-      to={slug}
-      style={{ display: "inline-block", tabIndex: "inherit" }}
-      tabindex={tabIndex}
-      onClick={closeMenu}
-    >
+    <Link to={slug} tabIndex={tabIndex} onClick={closeMenu}>
       {name}
-      <Underline open={hovered} />
     </Link>
   )
 }
 
-const Dropdown = ({ dropdownItems, open, floating, closeMenu = () => {} }) => {
+const Dropdown = ({ dropdownItems, open, floating, closeMenu }) => {
   const [ref, { height, top }] = useMeasure()
   const props = useSpring({
     from: { opacity: 0, height: 0 },

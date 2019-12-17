@@ -15,12 +15,11 @@ const StyledHome = styled.main`
   max-width: 90%;
   margin: 0 auto;
   #intro {
-    text-align: center;
     grid-column: main-start / main-end;
     margin-bottom: 10rem;
-    p {
-      padding-left: 10%;
-      padding-right: 10%;
+    h1 {
+      text-align: center;
+      margin-bottom: 5rem;
     }
     ${below.small`
       grid-column: left / right
