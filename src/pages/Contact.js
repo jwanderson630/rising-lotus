@@ -52,7 +52,13 @@ const Contact = ({ data }) => {
       />
       <StyledHome id="Contact">
         <section id="form">
-          <form data-netlify="true" action="/success">
+          <form
+            name="contact"
+            method="post"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            action="/success"
+          >
             <StyledInputField>
               <label htmlFor="name">Name</label>
               <input type="text" id="name" />
@@ -68,6 +74,7 @@ const Contact = ({ data }) => {
             <div className="btnRow">
               <button type="submit">Send</button>
             </div>
+            <input type="hidden" name="form-name" value="contact" />
           </form>
         </section>
       </StyledHome>
