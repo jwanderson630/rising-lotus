@@ -108,6 +108,7 @@ const GlobalStyles = createGlobalStyle`
         color: white;
         text-decoration: none;
         font-size: 1.6rem;
+        outline: none;
         cursor: pointer;
         transition: ${transitions(
           "box-shadow",

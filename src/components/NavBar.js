@@ -36,6 +36,10 @@ const StyledLogo = styled.h1`
   a {
     color: white;
     text-decoration: none;
+    outline: none;
+    &:focus {
+      text-decoration: underline;
+    }
   }
   @media (min-width: 800px) {
     font-size: 3rem;

@@ -18,11 +18,13 @@ const StyledFooter = styled.footer`
   a {
     text-decoration: none;
     color: white;
+    outline: none;
     &:visited {
       color: white;
     }
     &:hover,
     &:focus {
+      outline: none;
       text-decoration: underline;
     }
   }

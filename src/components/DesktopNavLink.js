@@ -11,6 +11,9 @@ const StyledNavLink = styled.div`
     text-decoration: none;
     color: white;
     outline: none;
+    &:focus {
+      outline: none;
+    }
   }
   margin: 0 1rem;
   &:last-child {
