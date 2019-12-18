@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef } from "react"
 import styled from "styled-components"
 import { colors } from "../utilities/styleHelpers"
 import MobileNavLink from "./MobileNavLink"
@@ -80,7 +80,7 @@ const MobileNav = ({ data }) => {
               />
             )
           })}
-          <MobileNavLink name="Contact" slug="/contact" onClick={closeMenu} />
+          <MobileNavLink name="Contact" slug="/contact" closeMenu={closeMenu} />
         </StyledNavLinks>
       </StyledNav>
     </>

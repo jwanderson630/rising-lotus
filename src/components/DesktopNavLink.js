@@ -25,7 +25,7 @@ const DesktopNavLink = ({ name, slug, subPages }) => {
       <Link to={slug}>{name}</Link>
       <Underline open={hovered} />
       {subPages ? (
-        <Dropdown dropdownItems={subPages} open={hovered} floating={true} />
+        <Dropdown dropdownItems={subPages} open={hovered} floating="true" />
       ) : null}
     </StyledNavLink>
   )

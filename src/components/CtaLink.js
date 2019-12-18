@@ -20,7 +20,7 @@ const StyledCta = styled.div`
   &:active,
   &:focus {
     transform: translate3d(0, -0.25rem, 0);
-    box-shadow: ${boxShadows.up}
+    box-shadow: ${boxShadows.up};
     background-color: ${lighten(0.02, colors.primary)};
   }
 `

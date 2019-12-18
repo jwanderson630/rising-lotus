@@ -12,21 +12,29 @@ const StyledNavLink = styled.div`
   justify-content: space-between;
   align-items: center;
   transition: background-color 0.2s ease-in-out;
-  padding: 10px;
-  border-radius: 4px;
+  margin-bottom: 5px;
   a {
+    padding: 10px;
     text-decoration: none;
     color: white;
     outline: none;
+    width: 100%;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0);
+    transition: background-color 0.2s ease-in-out;
+    &.active {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
   }
-  ${({ focused }) =>
-    focused
-      ? `background-color: rgba(255, 255, 255, 0.15);`
-      : `background-color: rgba(255, 255, 255, 0);`}
 `
 
 const StyledOpenButton = styled(animated.button)`
-  margin-left: 2rem;
+  margin-left: 10px;
   background-color: #1a1a1a;
   border-radius: 50%;
   border: none;
@@ -40,34 +48,40 @@ const StyledOpenButton = styled(animated.button)`
   outline: none;
   transition: ${transitions("background-color")};
   transform-origin: center center;
+  cursor: pointer;
   svg {
     width: 20px;
     path {
       fill: white;
     }
   }
-  &:focus {
+  &:focus,
+  &:hover,
+  &:active {
     background-color: rgba(255, 255, 255, 0.15);
   }
 `
 
+const ActiveLink = props => {
+  const isActive = ({ isCurrent }) =>
+    isCurrent ? { className: "active" } : null
+  return (
+    <Link getProps={isActive} {...props}>
+      {props.name}
+    </Link>
+  )
+}
+
 const MobileNavLink = ({ name, slug, subPages, dropdownFloat, closeMenu }) => {
   const [open, setOpen] = useState(false)
-  const [focus, setFocus] = useState(false)
   const turn = useSpring({
     transform: open ? "rotate(135deg)" : `rotate(0deg)`,
   })
+
   return (
     <>
-      <StyledNavLink focused={focus}>
-        <Link
-          to={slug}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
-          onClick={closeMenu}
-        >
-          {name}
-        </Link>
+      <StyledNavLink>
+        <ActiveLink to={slug} onClick={closeMenu} name={name} />
         {subPages ? (
           <StyledOpenButton onClick={() => setOpen(!open)} style={turn}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

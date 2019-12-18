@@ -1,6 +1,11 @@
 import { createGlobalStyle } from "styled-components"
 import { normalize, lighten } from "polished"
-import { fontFamilies, colors } from "../utilities/styleHelpers"
+import {
+  fontFamilies,
+  colors,
+  transitions,
+  boxShadows,
+} from "../utilities/styleHelpers"
 
 const GlobalStyles = createGlobalStyle`
     ${normalize()}
@@ -73,6 +78,51 @@ const GlobalStyles = createGlobalStyle`
 
     img {
         width: 100%;
+    }
+
+    label {
+        font-size: 1.4rem;
+        margin-bottom: .5rem;
+        display: block;
+    }
+
+    input, textarea, select {
+        outline: none;
+        border: 1px solid ${colors.darkGrey};
+        font-size: 1.8rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        width: 100%;
+        border-radius: 4px;
+        &:focus {
+            border: 1px solid ${colors.primary}
+        }
+    }
+
+    button {
+        background-color: ${colors.primary};
+        display: inline-block;
+        padding: 1.5rem 2.5rem;
+        border: 0;
+        border-radius: 4rem;
+        color: white;
+        text-decoration: none;
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: ${transitions(
+          "box-shadow",
+          "transform",
+          "background-color"
+        )};
+        transform: translate3d(0, 0, 0);
+        box-shadow: ${boxShadows.down};
+        &:hover,
+        &:active,
+        &:focus {
+            transform: translate3d(0, -0.25rem, 0);
+            box-shadow: ${boxShadows.up};
+            background-color: ${lighten(0.02, colors.primary)};
+        }
     }
 `
 

@@ -5,8 +5,6 @@ import SEO from "../components/seo"
 import Hero from "../components/Hero"
 import { below, above } from "../utilities/styleHelpers"
 
-const StyledInputField = styled.div``
-
 const StyledHome = styled.main`
   display: grid;
   grid-template-columns: [left] 15% [main-start] 1fr [center] 1fr [main-end] 15% [right];
@@ -39,7 +37,7 @@ const StyledHome = styled.main`
   }
 `
 
-const Contact = ({ data }) => {
+const Success = ({ data }) => {
   const heroImage = data.allContentfulAsset.edges[0].node
   return (
     <>
@@ -51,32 +49,15 @@ const Contact = ({ data }) => {
         height={500}
       />
       <StyledHome id="Contact">
-        <section id="form">
-          <form netlify action="/success">
-            <StyledInputField>
-              <label htmlFor="name">Name</label>
-              <input type="text" id="name" />
-            </StyledInputField>
-            <StyledInputField>
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" />
-            </StyledInputField>
-            <StyledInputField>
-              <label htmlFor="message">Message</label>
-              <textarea id="message" />
-            </StyledInputField>
-            <div className="btnRow">
-              <button type="submit">Send</button>
-            </div>
-          </form>
-        </section>
+        <h1>Thank you!</h1>
+        <p>I will be in touch soon.</p>
       </StyledHome>
     </>
   )
 }
 
 export const data = graphql`
-  query contactHeroImage {
+  query successHeroImage {
     allContentfulAsset(filter: { title: { eq: "Pink Lotus Flower" } }) {
       edges {
         node {
@@ -92,4 +73,4 @@ export const data = graphql`
   }
 `
 
-export default Contact
+export default Success

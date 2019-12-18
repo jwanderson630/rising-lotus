@@ -12,9 +12,11 @@ const StyledDropdown = styled(animated.div)`
     left: -1.5rem;
     overflow: hidden;`
       : ``}
+  pointer-events: inherit;
 
   .sub-link {
     display: block;
+    pointer-events: inherit;
   }
   a {
     text-decoration: none;
@@ -26,6 +28,11 @@ const StyledDropdown = styled(animated.div)`
     display: block;
     width: calc(100% - 50px);
     border-radius: 4px;
+    pointer-events: inherit;
+    transition: background-color 0.2s ease-in-out;
+    &.active {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
     &:focus,
     &:hover {
       background-color: rgba(255, 255, 255, 0.15);
@@ -48,10 +55,12 @@ const StyledDropdown = styled(animated.div)`
   }
 `
 
-const DropdownLink = ({ slug, name, tabIndex, closeMenu }) => {
+const DropdownLink = props => {
+  const isActive = ({ isCurrent }) =>
+    isCurrent ? { className: "active" } : null
   return (
-    <Link to={slug} tabIndex={tabIndex} onClick={closeMenu}>
-      {name}
+    <Link getProps={isActive} {...props}>
+      {props.name}
     </Link>
   )
 }
@@ -63,7 +72,6 @@ const Dropdown = ({ dropdownItems, open, floating, closeMenu }) => {
     overflow: "hidden",
     opacity: open ? 1 : 0,
     height: open ? height + top * 2 : 0,
-    pointerEvents: open ? "all" : "none",
   })
   return (
     <StyledDropdown className="dropdown" style={props} floating={floating}>
@@ -74,8 +82,10 @@ const Dropdown = ({ dropdownItems, open, floating, closeMenu }) => {
               name={item.name}
               slug={item.parentPage.slug + item.slug}
               key={item.slug}
+              to={`/services/${item.slug}`}
               tabIndex={open ? 0 : -1}
-              closeMenu={closeMenu}
+              onClick={closeMenu}
+              open={open}
             />
           </li>
         ))}

@@ -6,24 +6,37 @@ import SEO from "../components/seo"
 import Hero from "../components/Hero"
 import Promos from "../components/Promos"
 import FlowIn from "../components/FlowIn"
-import { below } from "../utilities/styleHelpers"
+import { below, above } from "../utilities/styleHelpers"
 
 const StyledHome = styled.main`
   display: grid;
   grid-template-columns: [left] 15% [main-start] 1fr [center] 1fr [main-end] 15% [right];
-  width: 96rem;
-  max-width: 90%;
+  width: 94vw;
   margin: 0 auto;
   #intro {
     grid-column: main-start / main-end;
     margin-bottom: 10rem;
     h1 {
-      text-align: center;
+      text-align: left;
       margin-bottom: 5rem;
+      ${below.medium`
+      text-align: left;
+      `}
     }
     ${below.small`
-      grid-column: left / right
+      grid-column: left / right;
   `}
+    .contact-page {
+      display: grid;
+      grid-gap: 30px;
+      grid-template-columns: 1fr;
+      ${above.large`
+      grid-template-columns: 1fr 2fr;
+      `}
+      .img-container {
+        text-align: center;
+      }
+    }
   }
   #content {
     grid-column: main-start / main-end;
@@ -33,7 +46,15 @@ const StyledHome = styled.main`
   `}
   }
   #promos {
-    grid-column: left / right;
+    grid-column: main-start / main-end;
+    ${below.small`
+      grid-column: left / right
+  `}
+  }
+  &#About {
+    #intro h1 {
+      text-align: center;
+    }
   }
 `
 
@@ -65,7 +86,7 @@ const PageTemplate = ({ data }) => {
         ctaText={heroCtaText}
         ctaLink={heroCtaLink}
       />
-      <StyledHome>
+      <StyledHome id={name}>
         {introHeadline || introContent ? (
           <section id="intro">
             <FlowIn>

@@ -38,7 +38,7 @@ const StyledHeadline = styled.section`
     margin: 2rem 0;
     font-weight: normal;
     @media (min-width: 800px) {
-      font-size: 4rem;
+      font-size: 3.5rem;
     }
     @media (min-width: 1200px) {
       font-size: 4.5rem;

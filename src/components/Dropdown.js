@@ -9,7 +9,7 @@ import { fontFamilies } from "../utilities/styleHelpers"
 
 const StyledDropdown = styled(animated.div)`
   ${({ floating }) =>
-    floating
+    floating === "true"
       ? `position: absolute;
     left: -1.5rem;
     overflow: hidden;`
@@ -49,7 +49,7 @@ const DropdownLink = ({ slug, name, tabIndex, closeMenu }) => {
       ref={hoverRef}
       to={slug}
       style={{ display: "inline-block", tabIndex: "inherit" }}
-      tabindex={tabIndex}
+      tabIndex={tabIndex}
       onClick={closeMenu}
     >
       {name}

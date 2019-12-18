@@ -18,7 +18,7 @@ const StyledHeader = styled(animated.header)`
 
 const StyledHeaderContents = styled.div`
   display: grid;
-  width: calc(100% - 6rem);
+  width: 94vw;
   padding: 1rem 0;
   margin: 0 auto;
   grid-template-columns: auto minmax(100px, 1fr);
