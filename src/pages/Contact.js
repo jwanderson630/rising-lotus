@@ -48,11 +48,11 @@ const Contact = ({ data }) => {
         image={heroImage.fluid}
         headline="Contact"
         imageAlt={heroImage.title}
-        height={500}
+        height={300}
       />
       <StyledHome id="Contact">
         <section id="form">
-          <form netlify action="/success">
+          <form data-netlify="true" action="/success">
             <StyledInputField>
               <label htmlFor="name">Name</label>
               <input type="text" id="name" />

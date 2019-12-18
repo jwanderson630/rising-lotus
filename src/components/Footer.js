@@ -4,23 +4,42 @@ import { fontFamilies } from "../utilities/styleHelpers"
 
 const StyledFooter = styled.footer`
   background-color: rgb(26, 26, 26);
-  padding: 6rem;
+  padding: 6rem 0;
+  color: white;
+  font-size: 1.6rem;
+  font-family: ${fontFamilies.sansSerif};
   .footer-content {
-    width: 96rem;
-    max-width: 90%;
+    width: 94vw;
     margin: 0 auto;
   }
-  p {
+  .contact {
+    margin-bottom: 1.5rem;
+  }
+  a {
+    text-decoration: none;
     color: white;
-    font-family: ${fontFamilies.sansSerif};
+    &:visited {
+      color: white;
+    }
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 `
 
 const Footer = () => {
+  const date = new Date()
   return (
     <StyledFooter>
       <div className="footer-content">
-        &copy; ${Date.now()} Rising Lotus Counseling Services
+        <div className="contact">
+          <a href="tel:15036108548">503-610-8548</a> |{" "}
+          <a href="mailto:RisingLotusCounselingServices@gmail.com">Email</a>
+        </div>
+        <div className="copyright">
+          &copy; {date.getFullYear()} Rising Lotus Counseling Services
+        </div>
       </div>
     </StyledFooter>
   )
