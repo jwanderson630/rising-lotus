@@ -61,15 +61,15 @@ const Contact = ({ data }) => {
           >
             <StyledInputField>
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" />
+              <input type="text" id="name" name="name" />
             </StyledInputField>
             <StyledInputField>
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" />
+              <input type="email" id="email" name="email" />
             </StyledInputField>
             <StyledInputField>
               <label htmlFor="message">Message</label>
-              <textarea id="message" />
+              <textarea id="message" name="message" />
             </StyledInputField>
             <div className="btnRow">
               <button type="submit">Send</button>
