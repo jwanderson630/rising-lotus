@@ -80,9 +80,9 @@ const Contact = ({ data }) => {
           <form
             name="contact"
             method="post"
-            netlify-honeypot="bot-field"
+            action="/success/"
             data-netlify="true"
-            action="/success"
+            data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
           >
             <StyledInputField>
@@ -127,8 +127,13 @@ const Contact = ({ data }) => {
             <div className="btnRow">
               <button type="submit">Send</button>
             </div>
-            <input type="hidden" name="bot-field" />
             <input type="hidden" name="form-name" value="contact" />
+            <p hidden>
+              <label>
+                Don’t fill this out:{" "}
+                <input name="bot-field" onChange={handleChange} />
+              </label>
+            </p>
           </form>
         </section>
       </StyledHome>
