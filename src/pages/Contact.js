@@ -75,6 +75,7 @@ const Contact = ({ data }) => {
               <button type="submit">Send</button>
             </div>
             <input type="hidden" name="bot-field" />
+            <input type="hidden" name="form-name" value="contact" />
           </form>
         </section>
       </StyledHome>
