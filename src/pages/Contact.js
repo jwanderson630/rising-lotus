@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { graphql } from "gatsby"
+import { navigate } from "gatsby-link"
 import SEO from "../components/seo"
 import Hero from "../components/Hero"
 import { below, above } from "../utilities/styleHelpers"
@@ -41,6 +42,30 @@ const StyledHome = styled.main`
 
 const Contact = ({ data }) => {
   const heroImage = data.allContentfulAsset.edges[0].node
+  const [state, setState] = useState({})
+
+  function encode(data) {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&")
+  }
+
+  function handleChange({ target }) {
+    setState({ ...state, [target.name]: target.value })
+  }
+  function handleSubmit({ target: form }) {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": form.getAttribute("name"),
+        ...state,
+      }),
+    })
+      .then(() => navigate(form.getAttribute("action")))
+      .catch(error => alert(error))
+  }
+
   return (
     <>
       <SEO title="Contact" />
@@ -58,18 +83,46 @@ const Contact = ({ data }) => {
             netlify-honeypot="bot-field"
             data-netlify="true"
             action="/success"
+            onSubmit={handleSubmit}
           >
             <StyledInputField>
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                onChange={handleChange}
+                required
+              />
+            </StyledInputField>
+            <StyledInputField>
+              <label htmlFor="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                onChange={handleChange}
+                required
+              />
             </StyledInputField>
             <StyledInputField>
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                onChange={handleChange}
+                required
+              />
             </StyledInputField>
             <StyledInputField>
               <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" />
+              <textarea
+                style={{ height: "100px" }}
+                id="message"
+                name="message"
+                onChange={handleChange}
+              />
             </StyledInputField>
             <div className="btnRow">
               <button type="submit">Send</button>
