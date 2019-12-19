@@ -55,8 +55,8 @@ const Contact = ({ data }) => {
           <form
             name="contact"
             method="post"
+            netlify-honeypot="bot-field"
             data-netlify="true"
-            data-netlify-honeypot="bot-field"
             action="/success"
           >
             <StyledInputField>
@@ -74,7 +74,7 @@ const Contact = ({ data }) => {
             <div className="btnRow">
               <button type="submit">Send</button>
             </div>
-            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="bot-field" />
           </form>
         </section>
       </StyledHome>
