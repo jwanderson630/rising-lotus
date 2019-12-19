@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Img from "gatsby-image"
-import { fontFamilies } from "../utilities/styleHelpers"
+import { fontFamilies, colors } from "../utilities/styleHelpers"
 import CtaLink from "./CtaLink"
 import FlowIn from "./FlowIn"
 
@@ -14,6 +14,7 @@ const StyledHero = styled.div`
     props.height ? `${props.height}px` : "500px"};
   grid-template-columns: 1fr;
   margin-bottom: 10rem;
+  background-color: ${colors.darkGrey};
   .content {
     position: relative;
     grid-area: hero;

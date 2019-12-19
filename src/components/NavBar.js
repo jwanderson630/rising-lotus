@@ -60,6 +60,7 @@ const NavBar = ({ title }) => {
     query GetNavigation {
       allContentfulPage(
         filter: { showInNav: { eq: true }, subfield: { eq: false } }
+        sort: { fields: navOrder }
       ) {
         edges {
           node {

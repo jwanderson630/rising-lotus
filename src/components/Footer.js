@@ -36,7 +36,7 @@ const Footer = () => {
     <StyledFooter>
       <div className="footer-content">
         <div className="contact">
-          <a href="tel:15036108548">503-610-8548</a> |{" "}
+          <a href="tel:15036108548">(503) 610-8548</a> |{" "}
           <a href="mailto:RisingLotusCounselingServices@gmail.com">Email</a>
         </div>
         <div className="copyright">
