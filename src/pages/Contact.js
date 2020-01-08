@@ -4,38 +4,80 @@ import { graphql } from "gatsby"
 import { navigate } from "gatsby-link"
 import SEO from "../components/seo"
 import Hero from "../components/Hero"
-import { below, above } from "../utilities/styleHelpers"
+import { below, above, colors } from "../utilities/styleHelpers"
 
 const StyledInputField = styled.div``
 
 const StyledHome = styled.main`
   display: grid;
+  grid-column-gap: 4rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas:
+    "intro"
+    "info"
+    "form"
+    "map";
+  ${above.medium`
+  grid-template-columns: [left] 5% [main-start] 1fr [center] 1fr [main-end] 5% [right];
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "left intro intro right"
+    "left info form right"
+    "left map form right";
+  `}
+  ${above.large`
   grid-template-columns: [left] 15% [main-start] 1fr [center] 1fr [main-end] 15% [right];
+  `}
   width: 94vw;
-  margin: 0 auto;
+  margin: 0 auto 4rem;
+  #intro {
+    grid-area: intro;
+    margin-bottom: 4rem;
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+  #info {
+    grid-area: info;
+    margin-bottom: 4rem;
+    .contactLink {
+      color: ${colors.darkGrey};
+      font-size: 1.6rem;
+      text-decoration: none;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-gap: 1rem;
+      align-content: center;
+      &:first-child {
+        margin-bottom: 4rem;
+      }
+      span {
+        display: grid;
+        align-content: center;
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  #map {
+    grid-area: map;
+    margin-bottom: 4rem;
+    iframe {
+      width: 100%;
+    }
+  }
   #form {
-    grid-column: main-start / main-end;
-    margin-bottom: 10rem;
+    grid-area: form;
+    margin-bottom: 4rem;
+
     h1 {
       text-align: center;
       margin-bottom: 5rem;
       ${below.medium`
       text-align: left;
       `}
-    }
-    ${below.small`
-      grid-column: left / right;
-  `}
-    .contact-page {
-      display: grid;
-      grid-gap: 30px;
-      grid-template-columns: 1fr;
-      ${above.large`
-      grid-template-columns: 1fr 2fr;
-      `}
-      .img-container {
-        text-align: center;
-      }
     }
   }
 `
@@ -76,6 +118,62 @@ const Contact = ({ data }) => {
         height={300}
       />
       <StyledHome id="Contact">
+        <section id="intro">
+          <p>
+            Call or Email to schedule your free 15 minute consultation. Or in a
+            brief couple of sentences tell me why you are seeking services
+            below.
+          </p>
+        </section>
+        <section id="info">
+          <a className="contactLink" href="tel:15036108548">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill={colors.darkGrey}
+              >
+                <path
+                  d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.5 17.311l-1.76-3.397-1.032.505c-1.12.543-3.4-3.91-2.305-4.497l1.042-.513-1.747-3.409-1.053.52c-3.601 1.877 2.117 12.991 5.8 11.308l1.055-.517z"
+                  fill={colors.darkGrey}
+                />
+              </svg>
+            </span>
+            <span>(503) 610-8548</span>
+          </a>
+          <a
+            className="contactLink"
+            href="mailto:RisingLotusCounselingServices@gmail.com"
+          >
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill={colors.darkGrey}
+              >
+                <path
+                  fill={colors.darkGrey}
+                  d="M12 2.02c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 12.55l-5.992-4.57h11.983l-5.991 4.57zm0 1.288l-6-4.629v6.771h12v-6.771l-6 4.629z"
+                />
+              </svg>
+            </span>
+            <span>RisingLotusCounselingServices@gmail.com</span>
+          </a>
+        </section>
+        <section id="map">
+          <iframe
+            title="1110 SE Alder St, Portland, OR 97214"
+            height="280"
+            frameborder="0"
+            style={{ border: 0 }}
+            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJsYI0XqGglVQRHLvod5AV3R4&key=AIzaSyBpuPJpdbQsTsZN7Oz556wHQpXspmKMXSc"
+            allowfullscreen
+          ></iframe>
+        </section>
         <section id="form">
           <form
             name="contact"

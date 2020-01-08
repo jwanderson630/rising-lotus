@@ -8,6 +8,7 @@ const StyledFooter = styled.footer`
   color: white;
   font-size: 1.6rem;
   font-family: ${fontFamilies.sansSerif};
+  line-height: 1.5;
   .footer-content {
     width: 94vw;
     margin: 0 auto;
@@ -37,10 +38,14 @@ const Footer = () => {
       <div className="footer-content">
         <div className="contact">
           <a href="tel:15036108548">(503) 610-8548</a> |{" "}
-          <a href="mailto:RisingLotusCounselingServices@gmail.com">Email</a>
+          <a href="mailto:RisingLotusCounselingServices@gmail.com">
+            RisingLotusCounselingServices@gmail.com
+          </a>
         </div>
         <div className="copyright">
-          &copy; {date.getFullYear()} Rising Lotus Counseling Services
+          1110 SE Alder St, Portland, OR 97214
+          <br />
+          &copy; {date.getFullYear()} Rising Lotus, LLC
         </div>
       </div>
     </StyledFooter>
