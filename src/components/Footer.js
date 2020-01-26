@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { fontFamilies } from "../utilities/styleHelpers"
-import psychTodayLogo from "../../public/images/psychologyTodayLogo.svg"
+import psychTodayLogo from "../images/psychologyTodayLogo.svg"
 
 const StyledFooter = styled.footer`
   background-color: rgb(26, 26, 26);
