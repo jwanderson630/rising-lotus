@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { fontFamilies } from "../utilities/styleHelpers"
+import psychTodayLogo from "../../public/images/psychologyTodayLogo.svg"
 
 const StyledFooter = styled.footer`
   background-color: rgb(26, 26, 26);
@@ -59,7 +60,7 @@ const Footer = () => {
           <a href="https://www.psychologytoday.com/profile/471723">
             <img
               id="verification"
-              src="./images/psychologyTodayLogo.svg"
+              src={psychTodayLogo}
               alt="Verified By Psychology Today"
             />
           </a>
