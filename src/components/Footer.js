@@ -29,6 +29,14 @@ const StyledFooter = styled.footer`
       text-decoration: underline;
     }
   }
+  .certifications {
+    margin-top: 15px;
+    img {
+      width: 150px;
+      position: relative;
+      right: 3px;
+    }
+  }
 `
 
 const Footer = () => {
@@ -46,6 +54,15 @@ const Footer = () => {
           1110 SE Alder St, Portland, OR 97214
           <br />
           &copy; {date.getFullYear()} Rising Lotus, LLC
+        </div>
+        <div className="certifications">
+          <a href="https://www.psychologytoday.com/profile/471723">
+            <img
+              id="verification"
+              src="./images/psychologyTodayLogo.svg"
+              alt="Verified By Psychology Today"
+            />
+          </a>
         </div>
       </div>
     </StyledFooter>
