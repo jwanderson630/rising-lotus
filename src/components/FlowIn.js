@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react"
+import React, { useState, useMemo, useEffect } from "react"
 import { useSprings, animated } from "react-spring"
 import { Waypoint } from "react-waypoint"
 
@@ -9,6 +9,12 @@ const FlowIn = ({ children, offset = "-100px", distance = "50px" }) => {
       children.length ? children.filter(child => child !== null) : [children],
     [children]
   )
+
+  useEffect(() => {
+    if (window.scrollY > 0) {
+      setEntered(true)
+    }
+  })
 
   const springs = useSprings(
     flowItems.length,
@@ -29,7 +35,11 @@ const FlowIn = ({ children, offset = "-100px", distance = "50px" }) => {
     <>
       <Waypoint onEnter={() => setEntered(true)} topOffset={offset} />
       {springs.map((props, index) => (
-        <animated.div style={props} key={flowItems[index].key}>
+        <animated.div
+          style={props}
+          key={flowItems[index].key}
+          className="flowItem"
+        >
           {flowItems[index]}
         </animated.div>
       ))}

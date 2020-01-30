@@ -32,10 +32,13 @@ const StyledBlog = styled.main`
     a {
       color: ${colors.primary};
     }
+<<<<<<< HEAD
     a,
     a u {
       word-break: break-all;
     }
+=======
+>>>>>>> 811460fc16a2e7486ed444c84e270f7d9c76b7ce
   }
 `
 

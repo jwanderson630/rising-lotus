@@ -10,6 +10,7 @@ const path = require(`path`)
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const PageTemplate = path.resolve("./src/templates/PageTemplate.js")
+  const BlogTemplate = path.resolve("./src/templates/BlogTemplate.js")
 
   return graphql(`
     {
@@ -24,11 +25,21 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
+      allContentfulBlogPost {
+        edges {
+          node {
+            id
+            title
+            slug
+          }
+        }
+      }
     }
   `).then(result => {
     if (result.errors) {
       throw result.errors
     }
+
     const Pages = result.data.allContentfulPage.edges
     Pages.forEach(page => {
       createPage({
@@ -38,6 +49,17 @@ exports.createPages = ({ graphql, actions }) => {
         component: PageTemplate,
         context: {
           name: page.node.name,
+        },
+      })
+    })
+
+    const BlogPosts = result.data.allContentfulBlogPost.edges
+    BlogPosts.forEach(blogPost => {
+      createPage({
+        path: `/blog/${blogPost.node.slug}`,
+        component: BlogTemplate,
+        context: {
+          id: blogPost.node.id,
         },
       })
     })
