@@ -32,13 +32,10 @@ const StyledBlog = styled.main`
     a {
       color: ${colors.primary};
     }
-<<<<<<< HEAD
     a,
     a u {
       word-break: break-all;
     }
-=======
->>>>>>> 811460fc16a2e7486ed444c84e270f7d9c76b7ce
   }
 `
 
@@ -48,11 +45,9 @@ const BlogTemplate = ({ data }) => {
     title,
     content: { json: content },
   } = data.contentfulBlogPost
-  console.log(content)
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {
-        console.log(node)
         const img = node.data.target.fields.file["en-US"].url
         const description = node.data.target.fields.description["en-US"]
         return (
