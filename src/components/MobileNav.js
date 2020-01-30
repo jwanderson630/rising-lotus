@@ -80,6 +80,7 @@ const MobileNav = ({ data }) => {
               />
             )
           })}
+          <MobileNavLink name="Blog" slug="/blog" closeMenu={closeMenu} />
           <MobileNavLink name="Contact" slug="/contact" closeMenu={closeMenu} />
         </StyledNavLinks>
       </StyledNav>
