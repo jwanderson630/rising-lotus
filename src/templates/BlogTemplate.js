@@ -41,7 +41,7 @@ const BlogTemplate = ({ data }) => {
     title,
     content: { json: content },
   } = data.contentfulBlogPost
-
+  console.log(content)
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {

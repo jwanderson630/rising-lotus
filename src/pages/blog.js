@@ -1,54 +1,106 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import styled from "styled-components"
 import SEO from "../components/seo"
 import Hero from "../components/Hero"
-import { below, colors } from "../utilities/styleHelpers"
+import { below, colors, fontFamilies } from "../utilities/styleHelpers"
+import useHoveredOver from "../hooks/useHoveredOver"
+import Underline from "../components/Underline"
+import FlowIn from "../components/FlowIn"
 
 const StyledBlog = styled.main`
   display: grid;
   grid-template-columns: [left] 15% [main-start] 1fr [center] 1fr [main-end] 15% [right];
   width: 94vw;
   margin: 0 auto;
-  #content {
+  #posts {
     grid-column: main-start / main-end;
     margin-bottom: 10rem;
     ${below.small`
       grid-column: left / right
   `}
-    .blogImg {
-      display: flex;
-      align-content: center;
-      margin-top: 30px;
-      img {
-        width: auto;
-        max-width: 100%;
-        max-height: 500px;
-        margin: 0 auto;
+    .flowItem {
+      .blogPost {
+        border-bottom: 1px solid rgba(66, 66, 66, 0.1);
+      }
+      &:last-child {
+        .blogPost {
+          border: 0;
+          margin-bottom: 0;
+        }
       }
     }
-    a {
-      color: ${colors.primary};
+    .blogPost {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 6rem;
+      padding-bottom: 6rem;
+
+      h2 {
+        font-size: 2.5rem;
+        font-family: ${fontFamilies.sansSerif};
+      }
+      .date {
+        font-family: ${fontFamilies.sansSerif};
+        font-size: 1.5rem;
+        color: rgba(66, 66, 66, 0.6);
+        margin: 2rem auto 2rem;
+      }
+      .snippet {
+        font-size: 2rem;
+        margin: 2rem auto 4rem;
+      }
+      .cta {
+        display: inline-block;
+        margin: 0 auto;
+        a {
+          font-size: 1.5rem;
+          color: ${colors.darkGrey};
+          text-decoration: none;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          outline: none;
+        }
+      }
     }
   }
 `
 
+const BlogPost = ({ post }) => {
+  const [hovered, hoverRef] = useHoveredOver()
+  return (
+    <article className="blogPost" key={post.slug}>
+      <h2>{post.title}</h2>
+      <p className="date">{post.createdAt}</p>
+      <p className="snippet">{post.snippet}</p>
+      <div className="cta" ref={hoverRef}>
+        <Link to={`/blog/${post.slug}`}>Read more</Link>
+        <Underline open={hovered} color={colors.darkGrey} />
+      </div>
+    </article>
+  )
+}
+
 const Blog = ({ data }) => {
   const blogPosts = data.allContentfulBlogPost.edges
-
   const heroImage = data.contentfulAsset
-  console.log(blogPosts)
   return (
     <>
       <SEO title="Blog" />
       <Hero
         image={heroImage.fluid}
         imageAlt={heroImage.title}
-        height={500}
+        height={300}
         headline="Blog"
       />
-      <StyledBlog id="posts">
-        <section id="content"></section>
+      <StyledBlog>
+        <div id="posts">
+          <FlowIn>
+            {blogPosts.map(({ node: post }) => {
+              return <BlogPost key={post.slug} post={post} />
+            })}
+          </FlowIn>
+        </div>
       </StyledBlog>
     </>
   )
@@ -61,17 +113,9 @@ export const data = graphql`
         node {
           title
           slug
-          createdAt(formatString: "MMMM Do, YYYY")
+          createdAt(formatString: "MMMM DD, YYYY")
           id
           snippet
-          heroImage {
-            fluid(maxWidth: 200) {
-              aspectRatio
-              sizes
-              srcSet
-              src
-            }
-          }
         }
       }
     }

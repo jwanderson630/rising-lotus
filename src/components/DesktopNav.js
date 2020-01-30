@@ -23,6 +23,7 @@ const DesktopNav = ({ data }) => {
           />
         )
       })}
+      <DesktopNavLink name="Blog" slug="/blog" />
       <DesktopNavLink name="Contact" slug="/contact" />
     </StyledNav>
   )
