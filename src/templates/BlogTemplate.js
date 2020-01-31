@@ -48,14 +48,21 @@ const BlogTemplate = ({ data }) => {
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {
+        console.log(node)
         const img = node.data.target.fields.file["en-US"].url
-        const description = node.data.target.fields.description["en-US"]
+        const title = node.data.target.fields.title["en-US"]
         return (
           <div className="blogImg">
-            <img
-              src={`${img}?fm=jpg&fl=progressive&w=1900`}
-              alt={description ? description : ""}
-            />
+            <a
+              href={`${img}?fm=jpg&fl=progressive&w=1900`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${img}?fm=jpg&fl=progressive&w=1900`}
+                alt={title ? title : ""}
+              />
+            </a>
           </div>
         )
       },
