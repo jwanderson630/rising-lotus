@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import { fontFamilies } from "../utilities/styleHelpers"
-import psychTodayLogo from "../images/psychologyTodayLogo.svg"
 
 const StyledFooter = styled.footer`
   background-color: rgb(26, 26, 26);
@@ -13,6 +12,15 @@ const StyledFooter = styled.footer`
   .footer-content {
     width: 94vw;
     margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+    @media (min-width: 768px) {
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
   .contact {
     margin-bottom: 1.5rem;
@@ -31,11 +39,16 @@ const StyledFooter = styled.footer`
     }
   }
   .certifications {
-    margin-top: 15px;
+    margin-top: 30px;
     img {
-      width: 150px;
+      width: 100px;
       position: relative;
       right: 3px;
+      display: inline-block;
+      margin-right: 20px;
+    }
+    @media (min-width: 768px) {
+      margin-top: 0;
     }
   }
 `
@@ -45,23 +58,33 @@ const Footer = () => {
   return (
     <StyledFooter>
       <div className="footer-content">
-        <div className="contact">
-          <a href="tel:15036108548">(503) 610-8548</a> |{" "}
-          <a href="mailto:RisingLotusCounselingServices@gmail.com">
-            RisingLotusCounselingServices@gmail.com
-          </a>
-        </div>
-        <div className="copyright">
-          1110 SE Alder St, Portland, OR 97214
-          <br />
-          &copy; {date.getFullYear()} Rising Lotus, LLC
+        <div className="info">
+          <div className="contact">
+            <a href="tel:15036108548">(503) 610-8548</a> |{" "}
+            <a href="mailto:RisingLotusCounselingServices@gmail.com">
+              RisingLotusCounselingServices@gmail.com
+            </a>
+          </div>
+          <div className="copyright">
+            1110 SE Alder St, Portland, OR 97214
+            <br />
+            &copy; {date.getFullYear()} Rising Lotus, LLC
+          </div>
         </div>
         <div className="certifications">
-          <a href="https://www.psychologytoday.com/profile/471723">
+          <a
+            href="https://www.therapyden.com/therapist/lindsay-anderson-portland-or"
+            rel="nofollow noreferrer"
+          >
             <img
-              id="verification"
-              src={psychTodayLogo}
-              alt="Verified By Psychology Today"
+              src="https://s3-us-west-2.amazonaws.com/therapyden1/logos/therapyden-web-badge.png"
+              alt="TherapyDen"
+            />
+          </a>
+          <a href="https://www.portlandtherapycenter.com/therapists/lindsay-anderson">
+            <img
+              src="https://www.portlandtherapycenter.com/lib/img/therapist_badge_sm.png"
+              alt="Portland Therapy Center"
             />
           </a>
         </div>

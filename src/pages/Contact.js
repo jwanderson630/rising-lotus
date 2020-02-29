@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { graphql } from "gatsby"
-import { navigate } from "gatsby-link"
+import { graphql, navigate } from "gatsby"
 import SEO from "../components/seo"
 import Hero from "../components/Hero"
 import { below, above, colors } from "../utilities/styleHelpers"
@@ -240,7 +239,7 @@ const Contact = ({ data }) => {
 }
 
 export const data = graphql`
-  query contactHeroImage {
+  query {
     allContentfulAsset(filter: { title: { eq: "Pink Lotus Flower" } }) {
       edges {
         node {
