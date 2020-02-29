@@ -167,10 +167,10 @@ const Contact = ({ data }) => {
           <iframe
             title="1110 SE Alder St, Portland, OR 97214"
             height="280"
-            frameborder="0"
+            frameBorder="0"
             style={{ border: 0 }}
             src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJsYI0XqGglVQRHLvod5AV3R4&key=AIzaSyBpuPJpdbQsTsZN7Oz556wHQpXspmKMXSc"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </section>
         <section id="form">
