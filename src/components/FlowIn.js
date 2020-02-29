@@ -14,7 +14,7 @@ const FlowIn = ({ children, offset = "-100px", distance = "50px" }) => {
     if (window.scrollY > 0) {
       setEntered(true)
     }
-  })
+  }, [])
 
   const springs = useSprings(
     flowItems.length,

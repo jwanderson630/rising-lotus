@@ -240,7 +240,7 @@ const Contact = ({ data }) => {
 }
 
 export const data = graphql`
-  query contactHeroImage {
+  query {
     allContentfulAsset(filter: { title: { eq: "Pink Lotus Flower" } }) {
       edges {
         node {

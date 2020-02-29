@@ -108,7 +108,7 @@ const Blog = ({ data }) => {
 
 export const data = graphql`
   query {
-    allContentfulBlogPost {
+    allContentfulBlogPost(sort: { order: DESC, fields: createdAt }) {
       edges {
         node {
           title
