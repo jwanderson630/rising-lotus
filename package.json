@@ -8,7 +8,7 @@
     "@contentful/rich-text-html-renderer": "^13.4.0",
     "@contentful/rich-text-react-renderer": "^13.4.0",
     "@contentful/rich-text-types": "^13.4.0",
-    "gatsby": "^2.10.0",
+    "gatsby": "^4.25.7",
     "gatsby-cli": "^2.8.23",
     "gatsby-image": "^2.2.1",
     "gatsby-plugin-google-tagmanager": "^2.1.25",
